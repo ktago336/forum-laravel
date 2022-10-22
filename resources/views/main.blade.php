@@ -33,7 +33,7 @@
 @endif
 
 @if (Illuminate\Support\Facades\Auth::check())
-    <b>WOW YOU'RE LOGGED<hr></b>
+   <!-- <b>WOW YOU'RE LOGGED<hr></b>-->
 @endif
     @if (isset($records))
     @foreach ($records as $record)
