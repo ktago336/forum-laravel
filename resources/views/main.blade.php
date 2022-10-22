@@ -42,7 +42,7 @@
 @endif
     @if (isset($records))
     @foreach ($records as $record)
-        {{$record->author}}<br>
+        <b>{{$record->author}}</b><br>
         {{$record->message}}<br>
         {{$record->time}}<br>
         <hr>
