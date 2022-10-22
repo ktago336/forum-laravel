@@ -13,14 +13,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('MakeRecord', [\App\Http\Controllers\RecordsController::class, 'newPost']);
 
-Route::get('/', [\App\Http\Controllers\MainController::class, 'show']);
-//function () {
-//    echo 'HELLOOOO';
-//    //return view('welcome');
-//    return view('main');
-//}
+Route::get(
+    '/', [\App\Http\Controllers\MainController::class, 'show']);
+
+Route::get(
+    'MakeRecord', [\App\Http\Controllers\RecordsController::class, 'newPost']);
+
+
 Route::get('/login', function (){
     return view('login');
 });
@@ -40,5 +40,7 @@ Route::post('log', [\App\Http\Controllers\LoginController::class, 'login']);
 Route::get('log', function (){
     return back()->withErrors('error','error in login');
 });
+
+Route::get('/direct', [\App\Http\Controllers\DirectMessages::class, 'list']);
 
 //Route::get('/id/{name}', [\App\Http\Controllers\MainController::class, 'Answer']);
