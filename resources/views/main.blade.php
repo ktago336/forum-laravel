@@ -6,11 +6,16 @@
         <p>{{ $error }}</p>
     @endforeach
 @endif
-<a href="/login">Логин</a><br>
-<a href="/logout">Выход</a>
+
+
 <!--<form-->
 @if (Illuminate\Support\Facades\Auth::check())
     Вы зашли как {{$user=auth()->user()->name}}
+    <a href="/logout">Выход</a>
+@else
+    <a href="/login">Логин</a><br>
+    Или
+    <a href="/register">Регистрация</a><br>
 @endif
 <h1>Привет, Это представление, в которое я передал массив и прошелся по нему blade циклом</h1>
 @if (Illuminate\Support\Facades\Auth::check())
