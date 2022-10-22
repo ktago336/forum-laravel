@@ -44,7 +44,7 @@
     @foreach ($records as $record)
         <b>{{$record->author}}</b><br>
         {{$record->message}}<br>
-        {{$record->time}}<br>
+        <i>{{$record->time}}</i><br>
         <hr>
 
     @endforeach
