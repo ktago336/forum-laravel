@@ -42,8 +42,8 @@
 @endif
     @if (isset($records))
     @foreach ($records as $record)
-        <b>{{$record->author}}</b><br>
-        <h3>{{$record->message}}</h3><br>
+        <b>{{$record->author}}</b>
+        <h3>{{$record->message}}</h3>
         <i>{{$record->time}}</i><br>
         <hr>
 
