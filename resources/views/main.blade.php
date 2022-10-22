@@ -71,6 +71,8 @@
         clock.innerHTML = now.toLocaleTimeString();
     }, 1000);
 </script>
+    <div id="id_clock"></div>
+    <script>digitalClock();</script>
 
 
 
