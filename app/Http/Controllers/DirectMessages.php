@@ -14,9 +14,8 @@ class DirectMessages extends Controller
         }
 
         $messagesFrom=DB::table('direct_messages')
-
-            ->where('receive','=', $name=auth()->user()->id)
-            ->limit('1')
+            ->groupBy('send')
+            ->having('receive','=', intval(auth()->user()->id))
             ->get();
 
         return view('direct', ['fromWho'=>$messagesFrom]);
