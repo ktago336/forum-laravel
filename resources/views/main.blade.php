@@ -10,7 +10,8 @@
 <a href="/logout">Выход</a>
 <!--<form-->
 @if (Illuminate\Support\Facades\Auth::check())
-    Вы зашли как {{$user=auth()->user()->name}}
+    Вы зашли как {{$user=auth()->user()->name}}<br>
+    <a href="/direct">ЛИЧНЫЕ СООБЩЕНИЯ</a>
 @endif
 <h1>Привет, Это представление, в которое я передал массив и прошелся по нему blade циклом</h1>
 @if (Illuminate\Support\Facades\Auth::check())

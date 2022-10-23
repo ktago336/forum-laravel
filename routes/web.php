@@ -42,5 +42,7 @@ Route::get('log', function (){
 });
 
 Route::get('/direct', [\App\Http\Controllers\DirectMessages::class, 'list']);
+Route::post('sendMessage', [\App\Http\Controllers\DirectMessages::class, 'send']);
+
 
 //Route::get('/id/{name}', [\App\Http\Controllers\MainController::class, 'Answer']);
