@@ -6,12 +6,21 @@
         <p>{{ $error }}</p>
     @endforeach
 @endif
-<a href="/login">Логин</a><br>
-<a href="/logout">Выход</a>
+
+
 <!--<form-->
 @if (Illuminate\Support\Facades\Auth::check())
+<<<<<<< HEAD
     Вы зашли как {{$user=auth()->user()->name}}<br>
     <a href="/direct">ЛИЧНЫЕ СООБЩЕНИЯ</a>
+=======
+    Вы зашли как {{$user=auth()->user()->name}}
+    <a href="/logout">Выход</a>
+@else
+    <a href="/login">Логин</a><br>
+    Или
+    <a href="/register">Регистрация</a><br>
+>>>>>>> 6b4460a54f65449b5a1f62c5fc3a10860bf6b274
 @endif
 <h1>Привет, Это представление, в которое я передал массив и прошелся по нему blade циклом</h1>
 @if (Illuminate\Support\Facades\Auth::check())
@@ -38,9 +47,9 @@
 @endif
     @if (isset($records))
     @foreach ($records as $record)
-        {{$record->author}}<br>
-        {{$record->message}}<br>
-        {{$record->time}}<br>
+        <b>{{$record->author}}</b>
+        <h3>{{$record->message}}</h3>
+        <i>{{$record->time}}</i><br>
         <hr>
 
     @endforeach
@@ -67,6 +76,8 @@
         clock.innerHTML = now.toLocaleTimeString();
     }, 1000);
 </script>
+    <div id="id_clock"></div>
+    <script>digitalClock();</script>
 
 
 
