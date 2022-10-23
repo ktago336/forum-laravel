@@ -16,12 +16,12 @@ class DirectMessages extends Controller
         $messagesFrom=DB::table('direct_messages')
             ->groupBy('send')
             ->having('receive','=', intval(auth()->user()->id))
+            ->join('users','direct_messages.send','=','users.id')
             ->get();
 
+
         return view('direct', ['fromWho'=>$messagesFrom]);
-//        foreach ($messagesFrom as $from){
-//            echo $from->name.'<br>';
-//        }
+
     }
 
     public function send(Request $request){
@@ -40,5 +40,17 @@ class DirectMessages extends Controller
         DB::insert('insert into direct_messages (send, receive, message, date) values (?, ?, ?, ?)'
             ,[$fromID, $toID, $text, $date]);
         return redirect()->to('/direct');
+    }
+
+    public function conversation(Request $request, $withWho){
+        $messages=DB::table('direct_messages')
+            ->where([
+                'receive', '=', intval(auth()->user()->id),
+                'send','=',$withWho])
+            ->orWhere([
+                'send', '=', intval(auth()->user()->id),
+                'receive','=',$withWho]) ;
+        return view('dialogue', ['messages'=>$messages]);
+
     }
 }

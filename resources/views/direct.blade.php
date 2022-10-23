@@ -16,7 +16,7 @@
 
     @if(isset($fromWho))
     @foreach($fromWho as $contact)
-        <a href>{{$contact->send}}</a><br><hr>
+        <a href="/direct/{{$contact->send}}">{{$contact->name}}</a><br><hr>
 
     @endforeach
     @endif
