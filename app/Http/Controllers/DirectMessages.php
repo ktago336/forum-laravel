@@ -43,14 +43,36 @@ class DirectMessages extends Controller
     }
 
     public function conversation(Request $request, $withWho){
-        $messages=DB::table('direct_messages')
-            ->where([
-                'receive', '=', intval(auth()->user()->id),
-                'send','=',$withWho])
-            ->orWhere([
-                'send', '=', intval(auth()->user()->id),
-                'receive','=',$withWho]) ;
-        return view('dialogue', ['messages'=>$messages]);
 
+        $messages=DB::table('direct_messages')
+            ->where(
+                'receive', '=', intval(auth()->user()->id))
+            ->where('send','=',$withWho)
+
+            ->orWhere(
+                'send', '=', intval(auth()->user()->id))
+            ->where('receive','=',$withWho)
+
+            ->get();
+        return view('dialogue', ['messages'=>$messages, 'toWho'=>$withWho]);
+
+    }
+
+    public function sendTo(Request $request, $toWho){
+        $message=$request->validate([
+            'message'=>'required'
+        ]);
+
+
+
+        $fromID=intval(auth()->user()->id);
+        $toID=$toWho;
+        $date=strval(date('Y/m/d  H:i:s'));
+        $text=strval($message['message']);
+
+        DB::insert('insert into direct_messages (send, receive, message, date) values (?, ?, ?, ?)'
+            ,[$fromID, $toID, $text, $date]);
+
+        return back();
     }
 }

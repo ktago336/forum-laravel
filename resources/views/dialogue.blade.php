@@ -13,19 +13,13 @@
     @endforeach
 @endif
 @foreach($messages as $message)
-    {{$message}}<br>
+    {{strval($message->message)}}<br>
 @endforeach
 <div class="container">
     <div class="row">
-        <form method="POST" action="sendMessage" style="text-align: center; margin: auto;">
+        <form method="POST" action="/sendmessageto/{{$toWho}}" style="text-align: center; margin: auto;">
             {!! csrf_field() !!}
-
             <div>
-                Кому
-                <input style="margin: 10px;" type="text" name="to" placeholder="Ник получателя">
-            </div>
-            <div>
-                Сообщение
                 <input style="margin: 10px;" type="text" name="message" placeholder="Сообщение">
             </div>
 

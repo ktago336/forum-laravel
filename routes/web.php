@@ -44,6 +44,7 @@ Route::get('log', function (){
 Route::get('/direct', [\App\Http\Controllers\DirectMessages::class, 'list']);
 Route::post('sendMessage', [\App\Http\Controllers\DirectMessages::class, 'send']);
 Route::get('/direct/{withWho}', [\App\Http\Controllers\DirectMessages::class, 'conversation']);
+Route::post('/sendmessageto/{toWho}', [\App\Http\Controllers\DirectMessages::class, 'sendTo']);
 
 
 
