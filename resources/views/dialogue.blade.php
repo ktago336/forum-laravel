@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Диалог </title>
+    <title>Диалог {{$companion}}</title>
     <link href="css/app.css" rel="stylesheet">
 </head>
 <body>
@@ -14,7 +14,7 @@
 @endif
 @foreach($messages as $message)
     @if($message->send==$toWho)
-        {{strval($companion)}}
+        <b>{{strval($companion)}}:<b>
     @else
         {{strval($me)}}
     @endif
