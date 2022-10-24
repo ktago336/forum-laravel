@@ -54,7 +54,7 @@ class DirectMessages extends Controller
                 'send', '=', intval(auth()->user()->id))
             ->where('receive','=',$withWho)
 
-            ->get();
+            ->first();
 
 
         $fromID=intval(auth()->user()->id);
