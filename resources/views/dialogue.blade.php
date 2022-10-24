@@ -14,9 +14,9 @@
 @endif
 @foreach($messages as $message)
     @if($message->send==$toWho)
-        <b>{{strval($companion)}}:<b>
+        <b>{{strval($companion)}}:</b>
     @else
-        <b>{{strval($me)}}:<b>
+        <b>{{strval($me)}}:</b>
     @endif
     {{strval($message->message)}}<br>
 @endforeach
