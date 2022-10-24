@@ -16,6 +16,7 @@ class DirectMessages extends Controller
         $messagesFrom=DB::table('direct_messages')
             ->groupBy('send')
             ->having('receive','=', intval(auth()->user()->id))
+            ->orHaving('send','=',intval(auth()->user()->id))
             ->join('users','direct_messages.send','=','users.id')
             ->get();
 
@@ -54,7 +55,20 @@ class DirectMessages extends Controller
             ->where('receive','=',$withWho)
 
             ->get();
-        return view('dialogue', ['messages'=>$messages, 'toWho'=>$withWho]);
+
+
+        $MyName=DB::table('users')
+            ->where('id','=',$fromID)
+            ->get();
+        $HisName=DB::table('users')
+            ->where('id','=',$toID)
+            ->get();
+
+        $MyName=strval($MyName->name);
+        $CompanionName=strval($HisName->name);
+
+
+        return view('dialogue', ['messages'=>$messages, 'toWho'=>$withWho, 'me'=>$MyName, 'companion'=>$CompanionName],);
 
     }
 
@@ -63,12 +77,14 @@ class DirectMessages extends Controller
             'message'=>'required'
         ]);
 
-
+        $names=DB::table('users')
+            ->where('id','=',$fromID)
 
         $fromID=intval(auth()->user()->id);
         $toID=$toWho;
         $date=strval(date('Y/m/d  H:i:s'));
         $text=strval($message['message']);
+
 
         DB::insert('insert into direct_messages (send, receive, message, date) values (?, ?, ?, ?)'
             ,[$fromID, $toID, $text, $date]);

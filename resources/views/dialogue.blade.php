@@ -13,6 +13,11 @@
     @endforeach
 @endif
 @foreach($messages as $message)
+    @if($message->send==$toWho)
+        {{strval($companion)}}
+    @else
+        {{strval($me)}}
+    @endif
     {{strval($message->message)}}<br>
 @endforeach
 <div class="container">
