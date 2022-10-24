@@ -16,7 +16,7 @@
     @if($message->send==$toWho)
         <b>{{strval($companion)}}:<b>
     @else
-        {{strval($me)}}
+        <b>{{strval($me)}}:<b>
     @endif
     {{strval($message->message)}}<br>
 @endforeach
