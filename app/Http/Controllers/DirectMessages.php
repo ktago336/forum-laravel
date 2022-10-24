@@ -54,7 +54,7 @@ class DirectMessages extends Controller
                 'send', '=', intval(auth()->user()->id))
             ->where('receive','=',$withWho)
 
-            ->first();
+            ->get();
 
 
         $fromID=intval(auth()->user()->id);
@@ -62,10 +62,10 @@ class DirectMessages extends Controller
 
         $MyName=DB::table('users')
             ->where('id','=',$fromID)
-            ->get();
+            ->first();
         $HisName=DB::table('users')
             ->where('id','=',$toID)
-            ->get();
+            ->first();
 
         $MyName=strval($MyName->name);
         $CompanionName=strval($HisName->name);
