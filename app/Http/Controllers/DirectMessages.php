@@ -57,6 +57,9 @@ class DirectMessages extends Controller
             ->get();
 
 
+        $fromID=intval(auth()->user()->id);
+        $toID=$withWho;
+
         $MyName=DB::table('users')
             ->where('id','=',$fromID)
             ->get();
@@ -76,9 +79,6 @@ class DirectMessages extends Controller
         $message=$request->validate([
             'message'=>'required'
         ]);
-
-        $names=DB::table('users')
-            ->where('id','=',$fromID)
 
         $fromID=intval(auth()->user()->id);
         $toID=$toWho;
