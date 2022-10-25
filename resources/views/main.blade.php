@@ -58,7 +58,7 @@
         <hr>
     @endforeach
     @endif
-<h1 class="hh">Online clock</h1>
+/*<h1 class="hh">Online clock</h1>
             <div id="clock">
               <div id="time" class="glow"></div>          
               <div id="date">
@@ -80,10 +80,10 @@
                 <li class="friday">Fri</li>
                 <li class="saturday">Sat</li>
               </ul>
-            </div>
+            </div>*/
 <!------------------------------------------------------------------>  
         <script>
-        const switchBtn = document.getElementById("twelveHourBtn");
+        /*const switchBtn = document.getElementById("twelveHourBtn");
 
             let twelveHourBtn = document.getElementById("twelveHourBtn");
             let getTime = document.getElementById("time");
@@ -182,9 +182,45 @@
             ];
             month.innerHTML = months[date.getMonth()];
             day.innerHTML = date.getDate();
-            year.innerHTML = date.getFullYear();
+            year.innerHTML = date.getFullYear(); 
+            */
+            Number.prototype.pad = function(n) {
+  for (var r = this.toString(); r.length < n; r = 0 + r);
+  return r;
+};
+
+function updateClock() {
+  var now = new Date();
+  var milli = now.getMilliseconds(),
+    sec = now.getSeconds(),
+    min = now.getMinutes(),
+    hou = now.getHours(),
+    mo = now.getMonth(),
+    dy = now.getDate(),
+    yr = now.getFullYear();
+  var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var tags = ["mon", "d", "y", "h", "m", "s", "mi"],
+    corr = [months[mo], dy, yr, hou.pad(2), min.pad(2), sec.pad(2), milli];
+  for (var i = 0; i < tags.length; i++)
+    document.getElementById(tags[i]).firstChild.nodeValue = corr[i];
+}
+
+function initClock() {
+  updateClock();
+  window.setInterval("updateClock()", 1);
+}
             </script>
-        
+<body onLoad="initClock()">
+
+  <div id="timedate">
+    <a id="mon">January</a>
+    <a id="d">1</a>,
+    <a id="y">0</a><br />
+    <a id="h">12</a> :
+    <a id="m">00</a>:
+    <a id="s">00</a>:
+    <a id="mi">000</a>
+  </div>        
         
 </body>
 </html>
