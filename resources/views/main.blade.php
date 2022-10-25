@@ -53,7 +53,7 @@
     @if (isset($records))
     @foreach ($records as $record)
     
-        @if ({{$record->author=="admin3"}})
+        @if (strval($record->author)=="admin3")
             <h4><b>{{$record->author}}</b><h4><br>
             {{$record->message}}<br>
             <i>{{$record->time}}<br>
