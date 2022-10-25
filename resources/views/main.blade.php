@@ -58,6 +58,7 @@
             <div style="font: 24px courier"><b>{{$record->author}}</b></div><br>
             {{$record->message}}<br>
             <i>{{$record->time}}<br>
+            <hr>
             
         @else
    
