@@ -62,21 +62,17 @@
     @endif
 <br><br>
 <h1 class="hh">Online clock</h1>
-
             <div id="clock">
-              <div id="time" class="glow"></div>
-          
+              <div id="time" class="glow"></div>          
               <div id="date">
                 <span class="month"></span>
                 <span class="day"></span>,
                 <span class="year"></span>
-              </div>
-          
+              </div>      
               <div class="container">
                 <button id="twelveHourBtn">24 hour clock</button>
               </div>
-            </div>
-          
+            </div>          
             <div class="container">
               <ul id="days">
                 <li class="sunday">Sun</li>
@@ -88,10 +84,7 @@
                 <li class="saturday">Sat</li>
               </ul>
             </div>
-
-
-<!------------------------------------------------------------------>
-    
+<!------------------------------------------------------------------>  
         <script>
         const switchBtn = document.getElementById("twelveHourBtn");
 
