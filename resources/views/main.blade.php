@@ -24,7 +24,6 @@
     <a href="/logout">Выход</a>
 @else
     <a href="/login">Логин</a><br>
-    Или
     <a href="/register">Регистрация</a><br>
 @endif
 </div>
@@ -57,10 +56,8 @@
         {{$record->message}}<br>
         <i>{{$record->time}}<br>
         <hr>
-
     @endforeach
     @endif
-<br><br>
 <h1 class="hh">Online clock</h1>
             <div id="clock">
               <div id="time" class="glow"></div>          
