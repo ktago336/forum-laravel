@@ -52,10 +52,18 @@
 @endif
     @if (isset($records))
     @foreach ($records as $record)
-        <b>{{$record->author}}</b><br>
-        {{$record->message}}<br>
-        <i>{{$record->time}}<br>
+    
+        @if ({{$record->author=="admin3"}})
+            <h4><b>{{$record->author}}</b><h4><br>
+            {{$record->message}}<br>
+            <i>{{$record->time}}<br>
+        @else
+   
+            <b>{{$record->author}}</b><br>
+            {{$record->message}}<br>
+            <i>{{$record->time}}<br>
         <hr>
+        @endif
     @endforeach
     @endif
 <h1 class="hh">Online clock</h1>
