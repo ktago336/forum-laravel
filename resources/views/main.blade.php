@@ -17,7 +17,7 @@
 
 
 <!--<form-->
-<div class="qwer">
+<div class="link">
 @if (Illuminate\Support\Facades\Auth::check())
     Вы зашли как {{$user=auth()->user()->name}}<br>
     <a href="/direct">ЛИЧНЫЕ СООБЩЕНИЯ</a><br>
@@ -27,7 +27,7 @@
     <a href="/register">Регистрация</a><br>
 @endif
 </div>
- <h1 class="pisi">Общий чат</h1>
+ <h1 class="chat">Общий чат</h1>
 @if (Illuminate\Support\Facades\Auth::check())
     <h2>
         <div class="container">
@@ -70,7 +70,7 @@
         @endif
     @endforeach
     @endif
-<h1 class="hh">Online clock</h1>
+<h1>Online clock</h1>
             <div id="clock">
               <div id="time" class="glow"></div>          
               <div id="date">
