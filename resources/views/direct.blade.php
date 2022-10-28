@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>ЛИЧНЫЕ СООБЩЕНИЯ</title>
-    <link href="css/app.css" rel="stylesheet">
+   
 </head>
 <body>
 @if(Illuminate\Support\Facades\Auth::check())
@@ -16,7 +16,7 @@
 
     @if(isset($fromWho))
     @foreach($fromWho as $contact)
-        <a href="/direct/{{$contact->send}}">{{$contact->name}}</a><br><hr>
+        <a href="/direct/{{$contact['id']}}">{{$contact['name']}}</a><br><hr>
 
     @endforeach
     @endif
@@ -43,7 +43,6 @@
             </form>
         </div>
     </div>
-    <script src="js/app.js"></script>
 @endif
 </body>
 </html>

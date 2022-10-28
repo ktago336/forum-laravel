@@ -8,23 +8,45 @@ use Illuminate\Support\Facades\DB;
 
 class DirectMessages extends Controller
 {
-    public function list(Request $request){
+    public function list(){
         if (!Auth::check()){
             return redirect()->to('/');
         }
 
+        $listOfDialogues=array();
+
         $messagesFrom=DB::table('direct_messages')
-            ->groupBy('send')
+            ->groupBy('send','receive')
             ->having('receive','=', intval(auth()->user()->id))
             ->orHaving('send','=',intval(auth()->user()->id))
-            ->join('users','direct_messages.send','=','users.id')
             ->get();
 
+        foreach ($messagesFrom as $item){
+            if (intval($item->send)==intval(auth()->user()->id))
+                array_push($listOfDialogues, [
+                    'id'=>DB::table('users')
+                        ->where('id','=',$item->receive)
+                        ->first()->id,
+                    'name'=>DB::table('users')
+                        ->where('id','=',$item->receive)
+                        ->first()->name]);
 
-        return view('direct', ['fromWho'=>$messagesFrom]);
+            elseif (intval($item->receive)==intval(auth()->user()->id))
+                array_push($listOfDialogues,[
+                    'id'=>DB::table('users')
+                            ->where('id','=',$item->send)
+                            ->first()->id,
+                    'name'=>DB::table('users')
+                        ->where('id','=',$item->send)
+                        ->first()->name]);
 
+        }
+
+        $listOfDialogues=array_unique($listOfDialogues, SORT_REGULAR);
+
+        return view('direct', ['fromWho'=>$listOfDialogues]);
     }
-
+//////////////////////////////////////////////
     public function send(Request $request){
         $message=$request->validate([
             'to'=>['required', 'unique:users,id'],
@@ -42,8 +64,8 @@ class DirectMessages extends Controller
             ,[$fromID, $toID, $text, $date]);
         return redirect()->to('/direct');
     }
-
-    public function conversation(Request $request, $withWho){
+/////////////////////////////////////////////////////////
+    public function conversation( $withWho){
 
         $messages=DB::table('direct_messages')
             ->where(
@@ -74,7 +96,7 @@ class DirectMessages extends Controller
         return view('dialogue', ['messages'=>$messages, 'toWho'=>$withWho, 'me'=>$MyName, 'companion'=>$CompanionName],);
 
     }
-
+///////////////////////////////////////////////////////////////
     public function sendTo(Request $request, $toWho){
         $message=$request->validate([
             'message'=>'required'
