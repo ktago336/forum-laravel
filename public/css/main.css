@@ -101,14 +101,14 @@ ul li{
   margin: 1em;
   display: inline-block;
 }
-.glow {
+/* .glow {
   font-size: 25px;
   color: #fff;
   text-align: center;
   -webkit-animation: glow 1s ease-in-out infinite alternate;
   -moz-animation: glow 1s ease-in-out infinite alternate;
   animation: glow 1s ease-in-out infinite alternate;
-}
+} */
 
 @keyframes glow {
   from {

@@ -24,7 +24,6 @@
     <a href="/logout">Выход</a>
 @else
     <a href="/login">Логин</a><br>
-    Или
     <a href="/register">Регистрация</a><br>
 @endif
 </div>
@@ -53,30 +52,36 @@
 @endif
     @if (isset($records))
     @foreach ($records as $record)
-        <b>{{$record->author}}</b><br>
-        {{$record->message}}<br>
-        <i>{{$record->time}}<br>
-        <hr>
+    
+        @if (strval($record->author)=="admin3")
 
+            <div style="font: 24px courier"><b>{{$record->author}}</b></div><br>
+            {{$record->message}}<br>
+            <i>{{$record->time}}<br>
+            <hr>
+            
+        @else
+   
+            <b>{{$record->author}}</b><br>
+            {{$record->message}}<br>
+            <i>{{$record->time}}<br>
+            <hr>
+        
+        @endif
     @endforeach
     @endif
-<br><br>
 <h1 class="hh">Online clock</h1>
-
             <div id="clock">
-              <div id="time" class="glow"></div>
-          
+              <div id="time" class="glow"></div>          
               <div id="date">
                 <span class="month"></span>
                 <span class="day"></span>,
                 <span class="year"></span>
-              </div>
-          
+              </div>      
               <div class="container">
                 <button id="twelveHourBtn">24 hour clock</button>
               </div>
-            </div>
-          
+            </div>          
             <div class="container">
               <ul id="days">
                 <li class="sunday">Sun</li>
@@ -88,10 +93,7 @@
                 <li class="saturday">Sat</li>
               </ul>
             </div>
-
-
 <!------------------------------------------------------------------>
-  
         <script>
         const switchBtn = document.getElementById("twelveHourBtn");
 
@@ -108,7 +110,7 @@
               }
               return i;
             }
-            
+          
             function startTime() {
               let hours = "12";
               let today = new Date();
