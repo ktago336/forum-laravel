@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="../css/main.css">
     <title>FORUM</title>
 </head>
-<body>
+<body class='gradient'>
+  <style>
+    .gradient {
+      background: linear-gradient(70deg,rgb({{$colors[0]}},{{$colors[1]}},{{$colors[2]}}),rgb({{$colors[3]}},{{$colors[4]}},{{$colors[5]}}));
+    }
+  </style>
 
 @if(count($errors) > 0)
     @foreach ($errors->all() as $error)
@@ -15,9 +20,8 @@
     @endforeach
 @endif
 
-
 <!--<form-->
-<div class="qwer">
+<div class="link">
 @if (Illuminate\Support\Facades\Auth::check())
     Вы зашли как {{$user=auth()->user()->name}}<br>
     <a href="/direct">ЛИЧНЫЕ СООБЩЕНИЯ</a><br>
@@ -27,7 +31,7 @@
     <a href="/register">Регистрация</a><br>
 @endif
 </div>
- <h1 class="pisi">Общий чат</h1>
+ <h1 class="chat">Общий чат</h1>
 @if (Illuminate\Support\Facades\Auth::check())
     <h2>
         <div class="container">
@@ -70,7 +74,7 @@
         @endif
     @endforeach
     @endif
-<h1 class="hh">Online clock</h1>
+<h1>Online clock</h1>
             <div id="clock">
               <div id="time" class="glow"></div>          
               <div id="date">
@@ -93,7 +97,7 @@
                 <li class="saturday">Sat</li>
               </ul>
             </div>
-<!------------------------------------------------------------------>  
+<!------------------------------------------------------------------>
         <script>
         const switchBtn = document.getElementById("twelveHourBtn");
 
@@ -110,7 +114,7 @@
               }
               return i;
             }
-            
+          
             function startTime() {
               let hours = "12";
               let today = new Date();
@@ -196,7 +200,5 @@
             day.innerHTML = date.getDate();
             year.innerHTML = date.getFullYear();
             </script>
-        
-        
 </body>
 </html>
