@@ -15,9 +15,12 @@ class MainController extends Controller
         $ForumRecords = DB::table('forum_records')
             ->orderBy('id', 'desc')
             ->get();
-
+        $colors=[]
+        for ($i=0; $i <6 ; $i++) { 
+           $colors[i]=rand(0,255);
+        }
         //$ForumRecords=ForumRecord::All();
-        return view('main', ['records'=>$ForumRecords]);
+        return view('main', ['records'=>$ForumRecords, 'colors'=>$colors]);
 
     }
     public function Answer($a123){

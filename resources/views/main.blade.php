@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="../css/main.css">
     <title>FORUM</title>
 </head>
-<body>
+<body class='gradient'>
+  <style>
+    .gradient {
+      background: linear-gradient(70deg,rgb({{colors[0]}},{{colors[1]}},{{colors[2]}}),rgb({{colors[3]}},{{colors[4]}},{{colors[5]}}));
+    }
+  </style>
 
 @if(count($errors) > 0)
     @foreach ($errors->all() as $error)
